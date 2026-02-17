@@ -1,0 +1,15 @@
+body {
+  font-family: Arial;
+  padding: 20px;
+}
+
+.quiz, .resultBox {
+  padding: 15px;
+  border: 1px solid black;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.resultBox {
+  margin-top: 10px;
+}

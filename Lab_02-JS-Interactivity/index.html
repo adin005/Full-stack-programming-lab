@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lab 02 - JS Interactivity</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Dynamic Quiz</h1>
+
+<div class="quiz">
+  <p>1. What is 2 + 2?</p>
+  <input type="text" id="q1">
+
+  <p>2. What is the capital of Pakistan?</p>
+  <input type="text" id="q2">
+
+  <p>3. What color is the sky?</p>
+  <input type="text" id="q3">
+
+  <br><br>
+  <button onclick="checkQuiz()">Submit Quiz</button>
+  <button onclick="resetQuiz()">Reset</button>
+
+  <h2 id="quizResult"></h2>
+</div>
+
+<hr>
+
+<h1>Calculator</h1>
+
+<input type="number" id="num1">
+<select id="operator">
+  <option value="+">+</option>
+  <option value="-">-</option>
+  <option value="*">*</option>
+  <option value="/">/</option>
+</select>
+<input type="number" id="num2">
+
+<button onclick="calculate()">Calculate</button>
+
+<div id="calcResult" class="resultBox"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
