@@ -1,0 +1,40 @@
+<style>
+    body { margin: 0; font-family: 'Arial', sans-serif; }
+    nav { position: fixed; top: 0; width: 100%; background: #333; display: flex; justify-content: center; z-index: 1000; }
+    .tab { color: white; padding: 20px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+    .tab:hover { background: #555; }
+    .section { height: 100vh; padding: 100px 50px; border-bottom: 5px solid white; color: white; }
+    #s1 { background: #ff6b6b; } #s2 { background: #4ecdc4; } 
+    #s3 { background: #45b7d1; } #s4 { background: #96ceb4; } #s5 { background: #ffeead; color: #333; }
+</style>
+
+<nav>
+    <a href="#s1" class="tab">Home</a>
+    <a href="#s2" class="tab">Services</a>
+    <a href="#s3" class="tab">Portfolio</a>
+    <a href="#s4" class="tab">About</a>
+    <a href="#s5" class="tab">Contact</a>
+</nav>
+
+<div id="s1" class="section"><h1>Welcome Home</h1><p>Scroll down or use the tabs.</p></div>
+<div id="s2" class="section"><h1>Our Services</h1><p>We do great things.</p></div>
+<div id="s3" class="section"><h1>Portfolio</h1><p>Look at our work.</p></div>
+<div id="s4" class="section"><h1>About Us</h1><p>The team behind the magic.</p></div>
+<div id="s5" class="section"><h1>Contact</h1><p>Get in touch!</p></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.tab').click(function(e) {
+        e.preventDefault();
+        let target = $(this).attr('href');
+        
+        $('html, body').stop().animate({
+            scrollTop: $(target).offset().top
+        }, 1000);
+
+        // Animate section entrance
+        $(target).hide().fadeIn(1000);
+    });
+});
+</script>
