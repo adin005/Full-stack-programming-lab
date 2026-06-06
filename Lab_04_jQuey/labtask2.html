@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f0f2f5; }
+        
+        .gallery-wrapper { 
+            width: 600px; 
+            background: #fff; 
+            padding: 20px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+            text-align: center;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 350px;
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #mainImg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .caption-bar {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 15px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover { background: #0056b3; }
+        button:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+
+<div class="gallery-wrapper">
+    <h2>Interactive Gallery</h2>
+    
+    <div class="img-container">
+        <img id="mainImg" src="https://picsum.photos/id/1018/600/350">
+        <div class="caption-bar">
+            <h3 id="caption" style="margin:0">Mist in the Mountains</h3>
+        </div>
+    </div>
+
+    <div class="nav-buttons">
+        <button id="prevBtn">« Previous</button>
+        <button id="nextBtn">Next »</button>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    // 1. Data Source (Array of Objects)
+    const galleryData = [
+        { src: "https://picsum.photos/id/1018/600/350", title: "Mist in the Mountains" },
+        { src: "https://picsum.photos/id/1015/600/350", title: "River through the Valley" },
+        { src: "https://picsum.photos/id/1019/600/350", title: "The Lone Traveler" },
+        { src: "https://picsum.photos/id/1039/600/350", title: "Waterfall Cascade" }
+    ];
+
+    let currentIndex = 0;
+
+    // 2. Navigation Function
+    function changeSlide(direction) {
+        // Calculate new index
+        if (direction === 'next') {
+            currentIndex = (currentIndex + 1) % galleryData.length;
+        } else {
+            currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+        }
+
+        // 3. Effects & Chaining
+        // We fade out the image and caption, change the attributes, then fade back in.
+        $('#mainImg, #caption').fadeOut(400, function() {
+            // This callback runs only after the fadeOut is complete
+            $('#mainImg').attr('src', galleryData[currentIndex].src);
+            $('#caption').text(galleryData[currentIndex].title);
+            
+            // Re-select and fade back in
+            $(this).fadeIn(400);
+        });
+    }
+
+    // 4. Event Handlers
+    $('#nextBtn').on('click', function() {
+        changeSlide('next');
+    });
+
+    $('#prevBtn').on('click', function() {
+        changeSlide('prev');
+    });
+});
+</script>
+
+</body>
+</html>
